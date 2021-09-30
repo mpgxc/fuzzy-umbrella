@@ -20,6 +20,7 @@
           "@config": "./src/config",
           "@shared": "./src/shared",
           "@modules": "./src/modules",
+          "@domain": "./src/domain",
           "@core": "./src/core",
           "@infra": "./src/infra"
         }
