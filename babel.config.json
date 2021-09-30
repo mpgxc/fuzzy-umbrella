@@ -1,0 +1,30 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": "current"
+        }
+      }
+    ],
+    "@babel/preset-typescript"
+  ],
+  "plugins": [
+    "babel-plugin-transform-typescript-metadata",
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    [
+      "module-resolver",
+      {
+        "alias": {
+          "@config": "./src/config",
+          "@shared": "./src/shared",
+          "@modules": "./src/modules",
+          "@core": "./src/core",
+          "@infra": "./src/infra"
+        }
+      }
+    ]
+  ],
+  "ignore": ["src/@types", "**/*.spec.ts"]
+}
