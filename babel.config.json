@@ -22,7 +22,8 @@
           "@modules": "./src/modules",
           "@domain": "./src/domain",
           "@core": "./src/core",
-          "@infra": "./src/infra"
+          "@infra": "./src/infra",
+          "@application": "./src/application"
         }
       }
     ]

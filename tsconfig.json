@@ -17,6 +17,7 @@
     "baseUrl": "./src",
     "outDir": "./build",
     "paths": {
+      "@application/*": ["application/*"],
       "@modules/*": ["modules/*"],
       "@domain/*": ["domain/*"],
       "@core/*": ["core/*"],
