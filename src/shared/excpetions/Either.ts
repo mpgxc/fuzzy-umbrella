@@ -3,16 +3,16 @@ interface IDomainResult<S, F> {
   isError: boolean;
 }
 
-interface ISuccessResult<F, S> extends IDomainResult<F, S> {
+interface ISuccessResult<S, F> extends IDomainResult<S, F> {
   value: S;
   isError: false;
 }
 
-interface IFailureResult<F, S> extends IDomainResult<F, S> {
+interface IFailureResult<S, F> extends IDomainResult<S, F> {
   value: F;
   isError: true;
 }
 
-type Either<F, S> = IFailureResult<F, S> | ISuccessResult<F, S>;
+type Either<S, F> = ISuccessResult<S, F> | IFailureResult<S, F>;
 
 export { Either, ISuccessResult, IFailureResult };

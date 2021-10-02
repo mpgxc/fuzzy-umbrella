@@ -1,11 +1,11 @@
 import { ISuccessResult, IFailureResult } from './Either';
 
-const Success = <S>(value: S): ISuccessResult<never, S> => ({
+const Success = <S, F>(value: S): ISuccessResult<S, F> => ({
   value,
   isError: false,
 });
 
-const Failure = <F>(value: F): IFailureResult<F, never> => ({
+const Failure = <S, F>(value: F): IFailureResult<S, F> => ({
   value,
   isError: true,
 });
