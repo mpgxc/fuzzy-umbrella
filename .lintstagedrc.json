@@ -1,3 +1,7 @@
 {
-  "*.ts": ["yarn eslint --ext ts --fix", "yarn prettier --write"]
+  "*.ts": [
+    "yarn eslint --ext ts --fix",
+    "yarn prettier --write",
+    "yarn jest --bail --findRelatedTests --maxWorkers=4"
+  ]
 }

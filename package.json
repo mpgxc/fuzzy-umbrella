@@ -14,11 +14,13 @@
     "express-async-errors": "^3.1.1",
     "helmet": "^4.5.0",
     "husky": "^6.0.0",
+    "jest": "^27.2.4",
     "morgan": "^1.10.0",
     "pino": "^6.13.3",
     "pino-pretty": "^7.0.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
+    "ts-jest": "^27.0.5",
     "tsyringe": "^4.6.0",
     "uuid": "^8.3.2"
   },
@@ -29,7 +31,8 @@
     "build": "rimraf build; babel src --extensions \".js,.ts\" --out-dir build --copy-files --no-copy-ignored",
     "start": "node ./build/server.js",
     "lint": "eslint src --ext .ts --fix",
-    "format": "prettier --write src/**/*.ts"
+    "format": "prettier --write src/**/*.ts",
+    "test": "jest --verbose --detectOpenHandles --maxWorkers=4 --forceExit"
   },
   "config": {
     "commitizen": {
@@ -46,6 +49,7 @@
     "@babel/preset-typescript": "^7.13.0",
     "@commitlint/cli": "^12.1.1",
     "@commitlint/config-conventional": "^12.1.1",
+    "@types/jest": "^27.0.2",
     "@types/node": "^15.0.1",
     "@types/pino": "^6.3.11",
     "@types/uuid": "^8.3.1",
