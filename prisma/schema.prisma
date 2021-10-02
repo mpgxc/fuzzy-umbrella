@@ -6,3 +6,40 @@ datasource db {
 generator client {
   provider = "prisma-client-js"
 }
+
+model City {
+  id      String @id @default(uuid())
+  name    String @unique
+  country String
+
+  is_active Boolean @default(true)
+
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
+
+  customers Customer[]
+
+  @@map("cities")
+}
+
+model Customer {
+  id         String   @id @default(uuid())
+  full_name  String
+  birth_date DateTime
+  genre      Genre
+
+  is_active Boolean @default(true)
+
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
+
+  city_id String
+  City    City   @relation(fields: [city_id], references: [id])
+
+  @@map("customers")
+}
+
+enum Genre {
+  FEMALE
+  MALE
+}
