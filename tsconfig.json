@@ -23,7 +23,8 @@
       "@core/*": ["core/*"],
       "@infra/*": ["infra/*"],
       "@shared/*": ["shared/*"],
-      "@config/*": ["config/*"]
+      "@config/*": ["config/*"],
+      "@presenter/*":["presenter/*"]
     }
   }
 }

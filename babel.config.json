@@ -23,7 +23,8 @@
           "@domain": "./src/domain",
           "@core": "./src/core",
           "@infra": "./src/infra",
-          "@application": "./src/application"
+          "@application": "./src/application",
+          "@presenter":"./src/presenter"
         }
       }
     ]

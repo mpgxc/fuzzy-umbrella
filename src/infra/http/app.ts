@@ -2,10 +2,10 @@ import 'reflect-metadata';
 import 'express-async-errors';
 import '@shared/container';
 
+import { routes } from '@presenter/routes';
 import express from 'express';
 import helmet from 'helmet';
 import morgan from 'morgan';
-import { routes } from 'presenter/routes';
 
 const app = express();
 

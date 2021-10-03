@@ -1,6 +1,6 @@
 import { ExpressAdapter } from '@infra/http/adapters/ExpressAdapter';
+import { registerCustomerController } from '@presenter/factories/CustomerControllers';
 import { Router } from 'express';
-import { registerCustomerController } from 'presenter/factories/CustomerControllers';
 
 const customersRouter = Router();
 
