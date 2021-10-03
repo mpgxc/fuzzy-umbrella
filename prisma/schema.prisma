@@ -28,8 +28,7 @@ model Customer {
   birth_date DateTime
   genre      Genre
 
-  is_active Boolean @default(true)
-
+  is_active  Boolean  @default(true)
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt
 

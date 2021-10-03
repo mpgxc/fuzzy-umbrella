@@ -10,25 +10,25 @@ CREATE TABLE "cities" (
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    PRIMARY KEY ("id")
+    CONSTRAINT "cities_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "customers" (
     "id" TEXT NOT NULL,
     "full_name" TEXT NOT NULL,
-    "genre" "Genre" NOT NULL,
     "birth_date" TIMESTAMP(3) NOT NULL,
+    "genre" "Genre" NOT NULL,
     "is_active" BOOLEAN NOT NULL DEFAULT true,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "city_id" TEXT NOT NULL,
 
-    PRIMARY KEY ("id")
+    CONSTRAINT "customers_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "cities.name_unique" ON "cities"("name");
+CREATE UNIQUE INDEX "cities_name_key" ON "cities"("name");
 
 -- AddForeignKey
-ALTER TABLE "customers" ADD FOREIGN KEY ("city_id") REFERENCES "cities"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "customers" ADD CONSTRAINT "customers_city_id_fkey" FOREIGN KEY ("city_id") REFERENCES "cities"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
