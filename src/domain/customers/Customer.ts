@@ -1,4 +1,4 @@
-import { EntityUniqueID } from '@domain/common/UniqueEntityID';
+import { Entity } from '@domain/common/Entity';
 
 type Genre = 'FEMALE' | 'MALE';
 
@@ -8,17 +8,9 @@ type CustomerProps = {
   genre: Genre;
 };
 
-class Customer {
-  private readonly _id: string;
-  private readonly _props: CustomerProps;
-
+class Customer extends Entity<CustomerProps> {
   private constructor(props: CustomerProps, id?: string) {
-    this._props = props;
-    this._id = id || EntityUniqueID.build();
-  }
-
-  get id(): string {
-    return this._id;
+    super(props, id);
   }
 
   get fullName(): string {

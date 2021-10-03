@@ -1,21 +1,13 @@
-import { EntityUniqueID } from '@domain/common/UniqueEntityID';
+import { Entity } from '@domain/common/Entity';
 
 type CityProps = {
   name: string;
   country: string;
 };
 
-class City {
-  private readonly _id: string;
-  private readonly _props: CityProps;
-
+class City extends Entity<CityProps> {
   private constructor(props: CityProps, id?: string) {
-    this._props = props;
-    this._id = id || EntityUniqueID.build();
-  }
-
-  get id(): string {
-    return this._id;
+    super(props, id);
   }
 
   get name(): string {
