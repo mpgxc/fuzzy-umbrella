@@ -4,8 +4,13 @@ import { ICityRepository } from '@domain/cities/ICityRepository';
 class CityRepository implements ICityRepository {
   private cities: City[] = [];
 
-  async save(city: City): Promise<void> {
+  async create(city: City): Promise<void> {
     this.cities.push(city);
+  }
+
+  async save(city: City): Promise<void> {
+    const index = this.cities.findIndex(c => c.id === city.id);
+    this.cities[index] = city;
   }
 
   async delete(id: string): Promise<void> {

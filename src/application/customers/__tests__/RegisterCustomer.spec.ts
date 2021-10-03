@@ -29,7 +29,7 @@ describe('UseCase - RegisterCustomer', () => {
       name: 'Teresina',
     });
 
-    await cityRepository.save(city);
+    await cityRepository.create(city);
   });
 
   it('should be to register new customers!', async () => {

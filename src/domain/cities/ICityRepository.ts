@@ -1,6 +1,7 @@
 import { City } from './City';
 
 interface ICityRepository {
+  create(city: City): Promise<void>;
   save(city: City): Promise<void>;
   delete(id: string): Promise<void>;
 
