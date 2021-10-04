@@ -1,4 +1,5 @@
 import { City } from './City';
+import { RenderCityResponse } from './CityMapper';
 
 interface ICityRepository {
   create(city: City): Promise<void>;
@@ -7,8 +8,8 @@ interface ICityRepository {
 
   findById(id: string): Promise<City>;
   findByName(name: string): Promise<City>;
-  findByCountry(country: string): Promise<City[]>;
-  list(): Promise<City[]>;
+  findByCountry(country: string): Promise<RenderCityResponse[]>;
+  list(): Promise<RenderCityResponse[]>;
 }
 
-export { ICityRepository };
+export { ICityRepository, RenderCityResponse };
