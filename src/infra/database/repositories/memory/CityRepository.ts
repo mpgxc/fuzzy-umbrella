@@ -27,9 +27,9 @@ class CityRepository implements ICityRepository {
     return city ? CityMapper.toDomain(city as RenderCityResponse) : null;
   }
 
-  async findByName(name: string): Promise<City> {
-    const city = this.cities.find(city => city.name === name);
-    return city ? CityMapper.toDomain(city as RenderCityResponse) : null;
+  async findByName(name: string): Promise<City[]> {
+    const cities = this.cities.filter(city => city.name === name);
+    return cities ? cities.map(CityMapper.toDomain) : null;
   }
 
   async findByCountry(country: string): Promise<RenderCityResponse[]> {

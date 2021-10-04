@@ -42,14 +42,14 @@ class CityRepository implements ICityRepository {
     return city ? CityMapper.toDomain(city) : null;
   }
 
-  async findByName(name: string): Promise<City> {
-    const city = await prisma.city.findUnique({
+  async findByName(name: string): Promise<City[]> {
+    const cities = await prisma.city.findMany({
       where: {
         name,
       },
     });
 
-    return city ? CityMapper.toDomain(city) : null;
+    return cities ? cities.map(CityMapper.toDomain) : null;
   }
 
   async findByCountry(country: string): Promise<RenderCityResponse[]> {

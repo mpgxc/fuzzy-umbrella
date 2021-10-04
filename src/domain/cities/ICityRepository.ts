@@ -7,7 +7,7 @@ interface ICityRepository {
   delete(id: string): Promise<void>;
 
   findById(id: string): Promise<City>;
-  findByName(name: string): Promise<City>;
+  findByName(name: string): Promise<City[]>;
   findByCountry(country: string): Promise<RenderCityResponse[]>;
   list(): Promise<RenderCityResponse[]>;
 }
