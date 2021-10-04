@@ -44,7 +44,7 @@ class RegisterCustomerController implements IBaseController {
         }
       }
 
-      return created(customerRegistered.value);
+      return created();
     } catch (error) {
       return exception(error);
     }
