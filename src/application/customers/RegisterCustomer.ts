@@ -8,6 +8,7 @@ import { ContainerRegisterAlias } from '@shared/container/​​​​ContainerR
 import { Either, Result } from '@shared/excpetions';
 
 import { CityNotFoundError } from './errors';
+import { InvalidGenreError } from './errors/InvalidGenreError';
 
 type RegisterCustomerRequest = {
   full_name: string;
@@ -38,6 +39,10 @@ class RegisterCustomer {
 
     if (!city) {
       return Result.Failure(new CityNotFoundError(city_id));
+    }
+
+    if (!['FEMALE', 'MALE'].includes(genre)) {
+      return Result.Failure(new InvalidGenreError(genre));
     }
 
     const customer = Customer.build({

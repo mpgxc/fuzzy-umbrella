@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import { RegisterCustomer } from '@application/customers/RegisterCustomer';
 import { City } from '@domain/cities/City';
 import { ICityRepository } from '@domain/cities/ICityRepository';
-import { Customer } from '@domain/customers/Customer';
+import { Customer, Genre } from '@domain/customers/Customer';
 import { ICustomerRepository } from '@domain/customers/ICustomerRepository';
 import {
   MemoryCityRepository,
@@ -56,6 +56,21 @@ describe('UseCase - RegisterCustomer', () => {
 
     expect((customerOrError.value as BaseAppException).name).toEqual(
       'CityNotFoundError',
+    );
+
+    expect(customerOrError.isError).toBe(true);
+  });
+
+  it('should not be to register new customers with non-existent gender!', async () => {
+    const customerOrError = await registerCustomer.run({
+      birth_date: new Date('01/01/2000'),
+      full_name: 'John Doe',
+      genre: 'FEMALE_MALE' as Genre,
+      city_id: city.id,
+    });
+
+    expect((customerOrError.value as BaseAppException).name).toEqual(
+      'InvalidGenreError',
     );
 
     expect(customerOrError.isError).toBe(true);
