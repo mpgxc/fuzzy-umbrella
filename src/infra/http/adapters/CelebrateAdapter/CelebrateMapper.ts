@@ -1,6 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-type ValidationCelebrateErrors = {
-  [key: string]: any;
+
+type ValidationErrorItem = {
+  message: string;
+  type: string;
+  context?: {
+    label?: string;
+  };
 };
 
 type CelebrateMapperMessage = {
@@ -10,20 +15,19 @@ type CelebrateMapperMessage = {
 };
 
 class CelebrateMapper {
-  static render = (data: ValidationCelebrateErrors): CelebrateMapperMessage => {
-    const [, typeError] = data.type.split('.');
-
+  static render = (data: ValidationErrorItem): CelebrateMapperMessage => {
     return {
-      type: typeError,
+      type: data.type,
       message: data.message,
-      label: data.context.label,
+      label: data?.context?.label,
     };
   };
 
   static renderMany = (
-    data: ValidationCelebrateErrors[],
-  ): CelebrateMapperMessage[] =>
-    data.map((item: ValidationCelebrateErrors) => CelebrateMapper.render(item));
+    data: ValidationErrorItem[],
+  ): CelebrateMapperMessage[] => {
+    return data.map(CelebrateMapper.render);
+  };
 }
 
 export { CelebrateMapper };
