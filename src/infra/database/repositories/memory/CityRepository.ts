@@ -1,16 +1,20 @@
 import { City } from '@domain/cities/City';
-import { ICityRepository } from '@domain/cities/ICityRepository';
+import { CityMapper } from '@domain/cities/CityMapper';
+import {
+  ICityRepository,
+  RenderCityResponse,
+} from '@domain/cities/ICityRepository';
 
 class CityRepository implements ICityRepository {
-  private cities: City[] = [];
+  private cities: Partial<RenderCityResponse>[] = [];
 
   async create(city: City): Promise<void> {
-    this.cities.push(city);
+    this.cities.push(CityMapper.toPersistence(city));
   }
 
   async save(city: City): Promise<void> {
     const index = this.cities.findIndex(c => c.id === city.id);
-    this.cities[index] = city;
+    this.cities[index] = CityMapper.toPersistence(city);
   }
 
   async delete(id: string): Promise<void> {
@@ -19,19 +23,22 @@ class CityRepository implements ICityRepository {
   }
 
   async findById(id: string): Promise<City> {
-    return this.cities.find(city => city.id === id);
+    const city = this.cities.find(city => city.id === id);
+    return city ? CityMapper.toDomain(city as RenderCityResponse) : null;
   }
 
   async findByName(name: string): Promise<City> {
-    return this.cities.find(city => city.name === name);
+    const city = this.cities.find(city => city.name === name);
+    return city ? CityMapper.toDomain(city as RenderCityResponse) : null;
   }
 
-  async findByCountry(country: string): Promise<City[]> {
-    return this.cities.filter(city => city.country === country);
+  async findByCountry(country: string): Promise<RenderCityResponse[]> {
+    const cities = this.cities.filter(city => city.country === country);
+    return cities.map(CityMapper.toRender);
   }
 
-  async list(): Promise<City[]> {
-    return this.cities;
+  async list(): Promise<RenderCityResponse[]> {
+    return this.cities.map(CityMapper.toRender);
   }
 }
 
