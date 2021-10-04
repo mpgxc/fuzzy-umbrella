@@ -8,7 +8,7 @@ import express from 'express';
 import helmet from 'helmet';
 import morgan from 'morgan';
 
-import { HttpStatusCodes } from '@shared/http/HttpStatusCodes';
+import { CelebrateExceptionHandler } from '@shared/excpetions';
 
 const app = express();
 
@@ -17,5 +17,6 @@ app.use(morgan('dev'));
 app.use(helmet());
 app.use('/api', routes);
 app.use(RouteNotFound.handle);
+app.use(CelebrateExceptionHandler.handle);
 
 export { app };
