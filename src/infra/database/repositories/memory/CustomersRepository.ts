@@ -1,16 +1,23 @@
 import { Customer } from '@domain/customers/Customer';
-import { ICustomerRepository } from '@domain/customers/ICustomerRepository';
+import {
+  CustomerMapper,
+  CustomerPersistence,
+} from '@domain/customers/CustomerMapper';
+import {
+  CustomerRender,
+  ICustomerRepository,
+} from '@domain/customers/ICustomerRepository';
 
 class CustomersRepository implements ICustomerRepository {
-  private customers: Customer[] = [];
+  private customers: CustomerPersistence[] = [];
 
   async create(customer: Customer, city_id: string): Promise<void> {
-    this.customers.push(customer);
+    this.customers.push(CustomerMapper.toPersistence(customer));
   }
 
   async save(customer: Customer): Promise<void> {
     const index = this.customers.findIndex(c => c.id === customer.id);
-    this.customers[index] = customer;
+    this.customers[index] = CustomerMapper.toPersistence(customer);
   }
 
   async delete(id: string): Promise<void> {
@@ -19,15 +26,22 @@ class CustomersRepository implements ICustomerRepository {
   }
 
   async findById(id: string): Promise<Customer> {
-    return this.customers.find(c => c.id === id);
+    const customer = this.customers.find(c => c.id === id);
+    return customer ? CustomerMapper.toDomain(customer) : null;
   }
 
-  async listByName(name: string): Promise<Customer[]> {
-    return this.customers.filter(c => c.fullName === name);
+  async listByName(name: string): Promise<CustomerPersistence[]> {
+    return this.customers.filter(c => c.full_name === name);
   }
 
-  async list(): Promise<Customer[]> {
-    return this.customers;
+  async list(name?: string): Promise<Partial<CustomerRender>[]> {
+    if (name) {
+      return this.customers
+        .filter(c => c.full_name === name)
+        .map(CustomerMapper.toRender);
+    }
+
+    return this.customers.map(CustomerMapper.toRender);
   }
 }
 
