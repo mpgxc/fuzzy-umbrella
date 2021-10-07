@@ -2,6 +2,6 @@
   "*.ts": [
     "yarn eslint --ext ts --fix",
     "yarn prettier --write",
-    "yarn test --bail --findRelatedTests --maxWorkers=4 --passWithNoTests"
+    "dotenv -e .env.test yarn migrate && dotenv -e .env.test jest --bail --findRelatedTests"
   ]
 }
