@@ -9,7 +9,7 @@ type ControllerReponse = {
 class ExpressAdapter {
   static apply(CtxController: ControllerReponse) {
     return async (request: Request, response: Response): Promise<Response> => {
-      const httpResponse = await CtxController(request);
+      const httpResponse = await CtxController(request as HttpRequest);
       /**
        * Success status code range: 200 - 299
        * Error/Others: < 200 or > 299

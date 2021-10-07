@@ -1,5 +1,5 @@
 type HttpQuerys = {
-  [key: string]: undefined | string | string[] | HttpQuerys | HttpQuerys[];
+  [key: string]: string;
 };
 
 type HttpParams = {
