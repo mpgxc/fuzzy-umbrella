@@ -1,4 +1,4 @@
-FROM node:14-alpine
+FROM node:14
 
 WORKDIR /usr/app
 
@@ -8,11 +8,16 @@ RUN yarn
 
 COPY . .
 
+RUN yarn prisma generate
+
 # RUN yarn build
 
 # RUN rm -rf ./src ./.github ./.husky
 
-EXPOSE 3335
-
 # CMD ["yarn", "start"]
+
+EXPOSE ${API_PORT}
+
+
+
 CMD ["yarn", "dev"]
