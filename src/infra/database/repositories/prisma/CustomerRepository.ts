@@ -48,6 +48,7 @@ class CustomerRepository implements ICustomerRepository {
       where: {
         full_name: {
           contains: name,
+          mode: 'insensitive',
         },
       },
     });
@@ -55,10 +56,16 @@ class CustomerRepository implements ICustomerRepository {
     return customers.map(CustomerMapper.toRender);
   }
 
-  async list(): Promise<CustomerRender[]> {
+  async list(name?: string): Promise<CustomerRender[]> {
     const customers = await prisma.customer.findMany({
       include: {
         City: true,
+      },
+      where: {
+        full_name: {
+          contains: name,
+          mode: 'insensitive',
+        },
       },
     });
 

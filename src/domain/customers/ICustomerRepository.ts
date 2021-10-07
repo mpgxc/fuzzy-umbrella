@@ -10,7 +10,7 @@ interface ICustomerRepository {
 
   findById(id: string): Promise<Customer>;
   listByName(name: string): Promise<CustomerRender[]>;
-  list(): Promise<CustomerRender[]>;
+  list(name?: string): Promise<CustomerRender[]>;
 }
 
 export { ICustomerRepository, CustomerRender };
