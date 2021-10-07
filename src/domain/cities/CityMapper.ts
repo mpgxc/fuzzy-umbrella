@@ -40,4 +40,4 @@ class CityMapper {
   }
 }
 
-export { CityMapper, RenderCityResponse };
+export { CityMapper, RenderCityResponse, CityPersistence };

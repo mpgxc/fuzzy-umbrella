@@ -66,4 +66,4 @@ class CustomerMapper {
   }
 }
 
-export { CustomerMapper, RenderCustomerResponse };
+export { CustomerMapper, RenderCustomerResponse, CustomerPersistence };
