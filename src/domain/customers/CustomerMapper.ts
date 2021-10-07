@@ -56,7 +56,7 @@ class CustomerMapper {
       full_name: customer.full_name,
       genre: customer.genre,
       birth_date: customer.birth_date,
-      age: this.calculateAge(customer.birth_date),
+      age: CustomerMapper.calculateAge(customer.birth_date),
       city: customer?.City?.name,
       country: customer?.City?.country,
       is_active: customer.is_active,
