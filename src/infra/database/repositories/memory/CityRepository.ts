@@ -1,12 +1,13 @@
 import { City } from '@domain/cities/City';
-import { CityMapper } from '@domain/cities/CityMapper';
 import {
-  ICityRepository,
+  CityMapper,
+  CityPersistence,
   RenderCityResponse,
-} from '@domain/cities/ICityRepository';
+} from '@domain/cities/CityMapper';
+import { ICityRepository } from '@domain/cities/ICityRepository';
 
 class CityRepository implements ICityRepository {
-  private cities: Partial<RenderCityResponse>[] = [];
+  private cities: CityPersistence[] = [];
 
   async create(city: City): Promise<void> {
     this.cities.push(CityMapper.toPersistence(city));

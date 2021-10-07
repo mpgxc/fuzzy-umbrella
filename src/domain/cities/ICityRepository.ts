@@ -12,4 +12,4 @@ interface ICityRepository {
   list(): Promise<RenderCityResponse[]>;
 }
 
-export { ICityRepository, RenderCityResponse };
+export { ICityRepository };

@@ -1,9 +1,6 @@
 import { City } from '@domain/cities/City';
-import { CityMapper } from '@domain/cities/CityMapper';
-import {
-  ICityRepository,
-  RenderCityResponse,
-} from '@domain/cities/ICityRepository';
+import { CityMapper, RenderCityResponse } from '@domain/cities/CityMapper';
+import { ICityRepository } from '@domain/cities/ICityRepository';
 import { prisma } from '@infra/database/prisma';
 
 class CityRepository implements ICityRepository {
