@@ -3,6 +3,7 @@ import { ExpressAdapter } from '@infra/http/adapters/ExpressAdapter';
 import {
   listCustomerController,
   registerCustomerController,
+  removeCustomerController,
   showCustomerController,
 } from '@presenter/factories/CustomerControllers';
 import { CustomerValidator } from '@presenter/validators/CustomerValidator';
@@ -26,6 +27,12 @@ customersRouter.get(
   '/:id',
   CelebrateAdapter.apply(CustomerValidator.PARAM),
   ExpressAdapter.apply(showCustomerController.handle),
+);
+
+customersRouter.delete(
+  '/:id',
+  CelebrateAdapter.apply(CustomerValidator.PARAM),
+  ExpressAdapter.apply(removeCustomerController.handle),
 );
 
 export { customersRouter };
