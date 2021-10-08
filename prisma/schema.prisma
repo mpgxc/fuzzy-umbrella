@@ -9,7 +9,7 @@ generator client {
 
 model City {
   id      String @id @default(uuid())
-  name    String @unique
+  name    String
   country String
 
   is_active Boolean @default(true)
