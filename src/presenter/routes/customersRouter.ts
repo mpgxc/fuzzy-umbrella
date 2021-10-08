@@ -16,7 +16,11 @@ customersRouter.post(
   ExpressAdapter.apply(registerCustomerController.handle),
 );
 
-customersRouter.get('/', ExpressAdapter.apply(listCustomerController.handle));
+customersRouter.get(
+  '/',
+  CelebrateAdapter.apply(CustomerValidator.QUERY),
+  ExpressAdapter.apply(listCustomerController.handle),
+);
 
 customersRouter.get(
   '/:id',

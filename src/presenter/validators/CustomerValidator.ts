@@ -15,6 +15,14 @@ const CustomerValidator = {
       id: Joi.string().uuid().required(),
     }),
   },
+
+  QUERY: {
+    [Segments.QUERY]: Joi.object()
+      .keys({
+        name: Joi.string().optional(),
+      })
+      .unknown(),
+  },
 };
 
 export { CustomerValidator };
