@@ -14,10 +14,10 @@ class RemoveCustomerController implements IBaseController {
     const { id } = request.params;
 
     try {
-      const customerUpdated = await removeCustomer.run(id);
+      const customerRemoved = await removeCustomer.run(id);
 
-      if (customerUpdated.isError) {
-        const error = customerUpdated.value;
+      if (customerRemoved.isError) {
+        const error = customerRemoved.value;
 
         switch (error.constructor) {
           case CustomerNotFoundError:

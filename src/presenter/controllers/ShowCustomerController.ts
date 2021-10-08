@@ -14,10 +14,10 @@ class ShowCustomerController implements IBaseController {
     const { id } = request.params;
 
     try {
-      const customerUpdated = await showCustomer.run(id);
+      const customer = await showCustomer.run(id);
 
-      if (customerUpdated.isError) {
-        const error = customerUpdated.value;
+      if (customer.isError) {
+        const error = customer.value;
 
         switch (error.constructor) {
           case CustomerNotFoundError:
@@ -34,7 +34,7 @@ class ShowCustomerController implements IBaseController {
         }
       }
 
-      return ok(customerUpdated.value);
+      return ok(customer.value);
     } catch (error) {
       return exception(error);
     }
