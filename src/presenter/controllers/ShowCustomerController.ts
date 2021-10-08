@@ -1,4 +1,4 @@
-import { CityNotFoundError } from '@application/customers/errors';
+import { CustomerNotFoundError } from '@application/customers/errors';
 import { ShowCustomer } from '@application/customers/ShowCustomer';
 import { container } from 'tsyringe';
 
@@ -20,7 +20,7 @@ class ShowCustomerController implements IBaseController {
         const error = customerUpdated.value;
 
         switch (error.constructor) {
-          case CityNotFoundError:
+          case CustomerNotFoundError:
             throw AppException.build(
               error,
               HttpStatusCodes.STATUS_CODE_NOT_FOUND,
