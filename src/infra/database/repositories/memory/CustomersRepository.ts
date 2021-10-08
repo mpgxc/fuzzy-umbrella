@@ -2,6 +2,7 @@ import { Customer } from '@domain/customers/Customer';
 import {
   CustomerMapper,
   CustomerPersistence,
+  RenderCustomerResponse,
 } from '@domain/customers/CustomerMapper';
 import {
   CustomerRender,
@@ -28,6 +29,13 @@ class CustomersRepository implements ICustomerRepository {
   async findById(id: string): Promise<Customer> {
     const customer = this.customers.find(c => c.id === id);
     return customer ? CustomerMapper.toDomain(customer) : null;
+  }
+
+  async findByIdRender(id: string): Promise<CustomerRender> {
+    const customer = this.customers.find(c => c.id === id);
+    return customer
+      ? CustomerMapper.toRender(customer as RenderCustomerResponse)
+      : null;
   }
 
   async listByName(name: string): Promise<CustomerPersistence[]> {
