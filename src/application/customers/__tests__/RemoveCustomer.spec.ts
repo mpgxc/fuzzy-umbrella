@@ -10,13 +10,13 @@ import { BaseAppException } from '@shared/excpetions';
 
 import { RemoveCustomer } from '../RemoveCustomer';
 
-let showCustomer: RemoveCustomer;
+let deleteCustomer: RemoveCustomer;
 let customerRepository: ICustomerRepository;
 
 describe('UseCase - RemoveCustomer', () => {
   beforeEach(async () => {
     customerRepository = new MemoryCustomersRepository();
-    showCustomer = new RemoveCustomer(customerRepository);
+    deleteCustomer = new RemoveCustomer(customerRepository);
   });
 
   it('should be able to delete registered customers by id!', async () => {
@@ -28,7 +28,7 @@ describe('UseCase - RemoveCustomer', () => {
 
     await customerRepository.create(customer, '');
 
-    const customerOrError = await showCustomer.run(customer.id);
+    const customerOrError = await deleteCustomer.run(customer.id);
 
     expect(customerOrError.isError).toBe(false);
     expect(customerOrError.value).toBe(null);
@@ -38,10 +38,10 @@ describe('UseCase - RemoveCustomer', () => {
   });
 
   it('should not be able to delete customers registered by non-existent id!', async () => {
-    const customerOrError = await showCustomer.run(v4());
-    const customerOrError2 = await showCustomer.run(undefined);
-    const customerOrError3 = await showCustomer.run(null);
-    const customerOrError4 = await showCustomer.run('');
+    const customerOrError = await deleteCustomer.run(v4());
+    const customerOrError2 = await deleteCustomer.run(undefined);
+    const customerOrError3 = await deleteCustomer.run(null);
+    const customerOrError4 = await deleteCustomer.run('');
 
     expect(customerOrError.isError).toBe(true);
     expect(customerOrError2.isError).toBe(true);
