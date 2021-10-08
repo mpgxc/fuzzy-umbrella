@@ -9,6 +9,7 @@ interface ICustomerRepository {
   delete(id: string): Promise<void>;
 
   findById(id: string): Promise<Customer>;
+  findByIdRender(id: string): Promise<CustomerRender>;
   listByName(name: string): Promise<CustomerRender[]>;
   list(name?: string): Promise<CustomerRender[]>;
 }

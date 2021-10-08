@@ -43,6 +43,16 @@ class CustomerRepository implements ICustomerRepository {
     return customer ? CustomerMapper.toDomain(customer) : null;
   }
 
+  async findByIdRender(id: string): Promise<CustomerRender> {
+    const customer = await prisma.customer.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    return customer ? CustomerMapper.toRender(customer) : null;
+  }
+
   async listByName(name: string): Promise<CustomerRender[]> {
     const customers = await prisma.customer.findMany({
       where: {
