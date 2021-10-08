@@ -25,9 +25,10 @@ class RegisterCity {
     country,
     name,
   }: RegisterCityRequest): Promise<RegisterCityResponse> {
-    const cities = await this.cityRepository.findByName(name);
-
-    const cityExists = cities.some(city => city.country === country);
+    const cityExists = await this.cityRepository.findByStateCity({
+      city: name,
+      state: country,
+    });
 
     if (cityExists) {
       return Result.Failure(new CityAlreadyExistsError(name));
