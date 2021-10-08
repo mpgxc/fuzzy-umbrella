@@ -9,6 +9,12 @@ const CustomerValidator = {
       city_id: Joi.string().uuid().required(),
     }),
   },
+
+  PARAM: {
+    [Segments.PARAMS]: Joi.object().keys({
+      id: Joi.string().uuid().required(),
+    }),
+  },
 };
 
 export { CustomerValidator };
