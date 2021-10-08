@@ -45,6 +45,9 @@ class CustomerRepository implements ICustomerRepository {
 
   async findByIdRender(id: string): Promise<CustomerRender> {
     const customer = await prisma.customer.findUnique({
+      include: {
+        City: true,
+      },
       where: {
         id,
       },
