@@ -4,9 +4,20 @@ import {
   CityPersistence,
   RenderCityResponse,
 } from '@domain/cities/CityMapper';
-import { ICityRepository } from '@domain/cities/ICityRepository';
+import {
+  FindByStateAndCityRequest,
+  ICityRepository,
+} from '@domain/cities/ICityRepository';
 
 class CityRepository implements ICityRepository {
+  async findByStateCity({
+    city,
+    state,
+  }: FindByStateAndCityRequest): Promise<City> {
+    const citie = this.cities.find(c => c.name === city && c.country === state);
+    return citie ? CityMapper.toDomain(citie as RenderCityResponse) : null;
+  }
+
   private cities: CityPersistence[] = [];
 
   async create(city: City): Promise<void> {
