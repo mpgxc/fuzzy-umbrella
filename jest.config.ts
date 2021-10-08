@@ -5,6 +5,7 @@ import { compilerOptions } from './tsconfig.json';
 export default {
   bail: true,
   clearMocks: true,
+  verbose: true,
   coverageDirectory: 'coverage',
   coverageProvider: 'v8',
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
