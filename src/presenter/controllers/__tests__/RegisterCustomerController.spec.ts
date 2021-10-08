@@ -77,4 +77,35 @@ describe('RegisterCustomerController', () => {
     expect(response.body.name).toEqual('InvalidGenreError');
     expect(response.status).toBe(400);
   });
+
+  it('should not be to register new customers with wrongs props', async () => {
+    /**
+     * Todos os campos estão preenchidos de maneira incorreta
+     */
+    type ValidationPropsError = {
+      status: string;
+      type: string;
+      message: string;
+      label: string;
+    };
+
+    const response = await request(app)
+      .post('/api/customers')
+      .send({
+        birth_date: new Date('23-44-1995'),
+        full_name: '',
+        genre: '',
+        city_id: '',
+      });
+
+    const body = response.body as ValidationPropsError[];
+    const expectDate = body.filter(i => i.type === 'date.base');
+    const expectStrings = body.filter(i => i.type === 'string.empty');
+
+    expect(expectDate).toHaveLength(1);
+    expect(expectStrings).toHaveLength(3);
+
+    expect(response.status).toBe(422);
+    expect(body).toHaveLength(4);
+  });
 });
