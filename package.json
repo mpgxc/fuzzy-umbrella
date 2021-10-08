@@ -38,7 +38,7 @@
     "format": "prettier --write src/**/*.ts",
     "migrate": "prisma migrate dev --skip-generate",
     "test:spec": "jest  --no-cache --verbose --detectOpenHandles --maxWorkers=4 --forceExit",
-    "test": "dotenv -e .env.test yarn migrate; dotenv -e .env.test jest --verbose --runInBand --no-cache --detectOpenHandles --maxWorkers=4 --forceExit"
+    "test": "dotenv -e .env.test yarn migrate; dotenv -e .env.test jest --verbose --maxConcurrency=8  --no-cache --detectOpenHandles --maxWorkers=4 --forceExit"
   },
   "config": {
     "commitizen": {
