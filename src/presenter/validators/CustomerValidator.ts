@@ -10,6 +10,12 @@ const CustomerValidator = {
     }),
   },
 
+  UPDATE_BODY: {
+    [Segments.BODY]: Joi.object().keys({
+      full_name: Joi.string().required(),
+    }),
+  },
+
   PARAM: {
     [Segments.PARAMS]: Joi.object().keys({
       id: Joi.string().uuid().required(),

@@ -5,6 +5,7 @@ import {
   registerCustomerController,
   removeCustomerController,
   showCustomerController,
+  updateCustomerController,
 } from '@presenter/factories/CustomerControllers';
 import { CustomerValidator } from '@presenter/validators/CustomerValidator';
 import { Router } from 'express';
@@ -33,6 +34,15 @@ customersRouter.delete(
   '/:id',
   CelebrateAdapter.apply(CustomerValidator.PARAM),
   ExpressAdapter.apply(removeCustomerController.handle),
+);
+
+customersRouter.patch(
+  '/:id',
+  [
+    CelebrateAdapter.apply(CustomerValidator.PARAM),
+    CelebrateAdapter.apply(CustomerValidator.UPDATE_BODY),
+  ],
+  ExpressAdapter.apply(updateCustomerController.handle),
 );
 
 export { customersRouter };
