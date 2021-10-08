@@ -9,6 +9,7 @@ type ValidationErrorItem = {
 };
 
 type CelebrateMapperMessage = {
+  status: string;
   type: string;
   message: string;
   label: string;
@@ -17,6 +18,7 @@ type CelebrateMapperMessage = {
 class CelebrateMapper {
   static render = (data: ValidationErrorItem): CelebrateMapperMessage => {
     return {
+      status: 'Exception!',
       type: data.type,
       message: data.message,
       label: data?.context?.label,
