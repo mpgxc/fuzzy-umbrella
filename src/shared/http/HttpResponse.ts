@@ -18,8 +18,9 @@ const created = <T>(dto?: T): HttpResponse => ({
   body: dto,
 });
 
-const removed = (): Partial<HttpResponse> => ({
+const removed = (): HttpResponse => ({
   statusCode: HttpStatusCodes.STATUS_CODE_NO_CONTENT,
+  body: null,
 });
 
 const exception = (error: AppException): HttpResponse => {
