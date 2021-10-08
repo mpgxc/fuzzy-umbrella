@@ -6,7 +6,7 @@ import { inject, injectable } from 'tsyringe';
 import { ContainerRegisterAlias } from '@shared/container/​​​​ContainerRegisterAlias';
 import { Either, Result } from '@shared/excpetions';
 
-import { CustomerNotFoundError } from './errors/CustomerNotFoundError';
+import { CustomerNotFoundError } from './errors';
 
 type UpdateCustomerResponse = Either<null, CustomerNotFoundError>;
 

@@ -5,7 +5,7 @@ import { inject, injectable } from 'tsyringe';
 import { ContainerRegisterAlias } from '@shared/container/​​​​ContainerRegisterAlias';
 import { Either, Result } from '@shared/excpetions';
 
-import { CityAlreadyExistsError } from './errors/CityAlreadyExistsError';
+import { CityAlreadyExistsError } from './errors';
 
 type RegisterCityRequest = {
   name: string;
