@@ -55,7 +55,10 @@ class CityRepository implements ICityRepository {
   async findByName(name: string): Promise<RenderCityResponse[]> {
     const cities = await prisma.city.findMany({
       where: {
-        name,
+        name: {
+          contains: name,
+          mode: 'insensitive',
+        },
       },
     });
 
@@ -65,7 +68,10 @@ class CityRepository implements ICityRepository {
   async findByCountry(country: string): Promise<RenderCityResponse[]> {
     const cities = await prisma.city.findMany({
       where: {
-        country,
+        country: {
+          contains: country,
+          mode: 'insensitive',
+        },
       },
     });
 
@@ -78,8 +84,14 @@ class CityRepository implements ICityRepository {
   }: FindByStateAndCityRequest): Promise<RenderCityResponse> {
     const cityFound = await prisma.city.findFirst({
       where: {
-        name: { contains: city },
-        country: { contains: state },
+        name: {
+          contains: city,
+          mode: 'insensitive',
+        },
+        country: {
+          contains: state,
+          mode: 'insensitive',
+        },
       },
     });
 
