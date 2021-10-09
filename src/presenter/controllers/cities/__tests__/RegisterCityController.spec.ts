@@ -10,6 +10,14 @@ type ValidationPropsError = {
 };
 
 describe('RegisterCityController - POST cities', () => {
+  afterAll(async () => {
+    const deleteAllCities = prisma.city.deleteMany();
+
+    await prisma.$transaction([deleteAllCities]);
+
+    await prisma.$disconnect();
+  });
+
   it('should be able to create news cities!', async () => {
     const response = await request(app).post('/api/cities').send({
       country: 'Piauí',
