@@ -18,6 +18,8 @@ const CityValidator = {
     [Segments.QUERY]: Joi.object()
       .keys({
         name: Joi.string().optional(),
+        city: Joi.string().optional(),
+        state: Joi.string().optional(),
       })
       .unknown(),
   },

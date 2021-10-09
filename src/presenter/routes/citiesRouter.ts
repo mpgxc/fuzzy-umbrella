@@ -1,6 +1,7 @@
 import { CelebrateAdapter } from '@infra/http/adapters/CelebrateAdapter/CelebrateAdapter';
 import { ExpressAdapter } from '@infra/http/adapters/ExpressAdapter';
 import {
+  listCityController,
   registerCityController,
   showCityController,
 } from '@presenter/factories/CityController';
@@ -19,6 +20,12 @@ citiesRouter.get(
   '/:id',
   CelebrateAdapter.apply(CityValidator.PARAM),
   ExpressAdapter.apply(showCityController.handle),
+);
+
+citiesRouter.get(
+  '/',
+  CelebrateAdapter.apply(CityValidator.QUERY),
+  ExpressAdapter.apply(listCityController.handle),
 );
 
 export { citiesRouter };
