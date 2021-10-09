@@ -10,6 +10,11 @@ import {
 } from '@domain/cities/ICityRepository';
 
 class CityRepository implements ICityRepository {
+  async findByIdRender(id: string): Promise<RenderCityResponse> {
+    const city = this.cities.find(city => city.id === id);
+    return city ? CityMapper.toRender(city as RenderCityResponse) : null;
+  }
+
   async findByStateCity({
     city,
     state,

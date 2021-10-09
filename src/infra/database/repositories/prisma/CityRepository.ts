@@ -7,6 +7,16 @@ import {
 import { prisma } from '@infra/database/prisma';
 
 class CityRepository implements ICityRepository {
+  async findByIdRender(id: string): Promise<RenderCityResponse> {
+    const city = await prisma.city.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    return city ? CityMapper.toRender(city) : null;
+  }
+
   async create(city: City): Promise<void> {
     await prisma.city.create({
       data: CityMapper.toPersistence(city),
