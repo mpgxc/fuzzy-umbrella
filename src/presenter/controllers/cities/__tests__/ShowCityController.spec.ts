@@ -5,7 +5,7 @@ import { v4 } from 'uuid';
 
 describe('ShowCityController - GET cities/:id', () => {
   afterAll(async () => {
-    prisma.city.deleteMany();
+    await prisma.city.deleteMany();
     await prisma.$disconnect();
   });
 
