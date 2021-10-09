@@ -15,7 +15,7 @@
 ### Arquivo de Rotas /Insomnia
 
 <h1 align="center">
- <a href="https://insomnia.rest/run/?label=https%3A%2F%2Fgithub.com%2Fmpgxc%2Ffuzzy-umbrella%2Fblob%2Fmain%2Fendpoints.json&uri=" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>
+<a href="https://insomnia.rest/run/?label=CompassoAPI&uri=https%3A%2F%2Fgithub.com%2Fmpgxc%2Ffuzzy-umbrella%2Fblob%2Fmain%2Fendpoints.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>
 </h1>
 
 ### Diagrama de Entidade Relacionamento
