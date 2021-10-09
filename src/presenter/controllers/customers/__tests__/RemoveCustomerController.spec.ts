@@ -10,15 +10,6 @@ import { City } from '.prisma/client';
 let city: City;
 
 describe('RemoveCustomerController', () => {
-  beforeAll(async () => {
-    city = await prisma.city.create({
-      data: {
-        country: 'Piauí',
-        name: 'São João do Arraial',
-      },
-    });
-  });
-
   afterAll(async () => {
     const deleteAllCustomers = prisma.customer.deleteMany();
     const deleteAllCities = prisma.city.deleteMany();
@@ -26,6 +17,15 @@ describe('RemoveCustomerController', () => {
     await prisma.$transaction([deleteAllCustomers, deleteAllCities]);
 
     await prisma.$disconnect();
+  });
+
+  beforeEach(async () => {
+    city = await prisma.city.create({
+      data: {
+        country: faker.address.state(),
+        name: faker.address.city(),
+      },
+    });
   });
 
   it('should be able to delete specific customer by id!', async () => {

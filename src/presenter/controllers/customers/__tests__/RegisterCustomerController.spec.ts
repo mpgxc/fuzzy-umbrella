@@ -1,7 +1,13 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { prisma } from '@infra/database/prisma';
 import { app } from '@infra/http/app';
+import faker from 'faker';
 import request from 'supertest';
 import { v4 } from 'uuid';
+
+import { City } from '.prisma/client';
+
+let city: City;
 
 describe('RegisterCustomerController', () => {
   afterAll(async () => {
@@ -13,14 +19,16 @@ describe('RegisterCustomerController', () => {
     await prisma.$disconnect();
   });
 
-  it('should be able to create news customers', async () => {
-    const city = await prisma.city.create({
+  beforeEach(async () => {
+    city = await prisma.city.create({
       data: {
-        country: 'Piauí',
-        name: 'São João do Arraial',
+        country: faker.address.state(),
+        name: faker.address.city(),
       },
     });
+  });
 
+  it('should be able to create news customers', async () => {
     const response = await request(app)
       .post('/api/customers')
       .send({
@@ -46,7 +54,7 @@ describe('RegisterCustomerController', () => {
       .post('/api/customers')
       .send({
         birth_date: new Date('10-14-1995'),
-        full_name: 'Mateus Pinto Garcia',
+        full_name: faker.name.findName(),
         genre: 'MALE',
         city_id: v4(),
       });
@@ -57,13 +65,6 @@ describe('RegisterCustomerController', () => {
   });
 
   it('should not be to register new customers with non-existent gender!', async () => {
-    const city = await prisma.city.create({
-      data: {
-        country: 'Piauí',
-        name: 'Esperantina',
-      },
-    });
-
     const response = await request(app)
       .post('/api/customers')
       .send({
