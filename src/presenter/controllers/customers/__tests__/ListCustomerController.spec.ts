@@ -9,15 +9,6 @@ import { City } from '.prisma/client';
 let city: City;
 
 describe('ListCustomerController', () => {
-  beforeAll(async () => {
-    city = await prisma.city.create({
-      data: {
-        country: 'Piauí',
-        name: 'São João do Arraial',
-      },
-    });
-  });
-
   afterAll(async () => {
     const deleteAllCustomers = prisma.customer.deleteMany();
     const deleteAllCities = prisma.city.deleteMany();
@@ -27,22 +18,30 @@ describe('ListCustomerController', () => {
     await prisma.$disconnect();
   });
 
+  beforeEach(async () => {
+    city = await prisma.city.create({
+      data: {
+        country: faker.address.state(),
+        name: faker.address.city(),
+      },
+    });
+  });
+
   it('should be able to list registered customers!', async () => {
-    const customerPromises = [];
+    const customerRegistereds = [];
 
     for (let i = 0; i < 5; i += 1) {
-      const customer = prisma.customer.create({
-        data: {
-          birth_date: faker.date.past(),
-          full_name: faker.name.findName(),
-          genre: faker.random.arrayElement(['MALE', 'FEMALE']),
-          city_id: city.id,
-        },
+      customerRegistereds.push({
+        birth_date: faker.date.past(),
+        full_name: faker.name.findName(),
+        genre: faker.random.arrayElement(['MALE', 'FEMALE']),
+        city_id: city.id,
       });
-      customerPromises.push(customer);
     }
 
-    await Promise.all(customerPromises);
+    await prisma.customer.createMany({
+      data: customerRegistereds,
+    });
 
     /**
      * Test Case
@@ -61,28 +60,26 @@ describe('ListCustomerController', () => {
     expect(first).toHaveProperty('birth_date');
     expect(first).toHaveProperty('genre');
     expect(first).toHaveProperty('city');
-    expect(first).toHaveProperty('city');
     expect(first).toHaveProperty('age');
     expect(first).toHaveProperty('is_active');
   });
 
   it('should be able to list all customer that match the name filter!', async () => {
-    await prisma.customer.create({
-      data: {
-        birth_date: new Date('10-14-1995'),
-        full_name: 'Mateus Pinto Garcia',
-        genre: 'MALE',
-        city_id: city.id,
-      },
-    });
-
-    await prisma.customer.create({
-      data: {
-        birth_date: new Date('10-14-1995'),
-        full_name: 'Ana Maria Garcia',
-        genre: 'MALE',
-        city_id: city.id,
-      },
+    await prisma.customer.createMany({
+      data: [
+        {
+          birth_date: new Date('10-14-1995'),
+          full_name: 'Mateus Pinto Garcia',
+          genre: 'MALE',
+          city_id: city.id,
+        },
+        {
+          birth_date: new Date('10-14-1995'),
+          full_name: 'Ana Maria Garcia',
+          genre: 'FEMALE',
+          city_id: city.id,
+        },
+      ],
     });
 
     const response = await request(app).get('/api/customers').query({
