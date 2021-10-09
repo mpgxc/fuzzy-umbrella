@@ -4,7 +4,7 @@ import { ICityRepository } from '@domain/cities/ICityRepository';
 import { inject, injectable } from 'tsyringe';
 
 import { ContainerRegisterAlias } from '@shared/container/​​​​ContainerRegisterAlias';
-import { Either, Result } from '@shared/excpetions';
+import { Either, Result } from '@shared/exceptions';
 
 type ShowCityResponse = Either<RenderCityResponse, CityNotFoundError>;
 

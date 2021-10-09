@@ -6,7 +6,7 @@ import { MemoryCustomersRepository } from '@infra/database/repositories';
 import faker from 'faker';
 import { v4 } from 'uuid';
 
-import { BaseAppException } from '@shared/excpetions';
+import { BaseAppException } from '@shared/exceptions';
 
 import { RemoveCustomer } from '../RemoveCustomer';
 

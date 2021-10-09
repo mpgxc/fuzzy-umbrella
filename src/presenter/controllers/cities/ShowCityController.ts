@@ -2,7 +2,7 @@ import { ShowCity } from '@application/cities/ShowCity';
 import { CityNotFoundError } from '@application/customers/errors';
 import { container } from 'tsyringe';
 
-import { AppException } from '@shared/excpetions';
+import { AppException } from '@shared/exceptions';
 import { IBaseController } from '@shared/http/BaseController';
 import { HttpRequest } from '@shared/http/HttpRequest';
 import { exception, ok, HttpResponse } from '@shared/http/HttpResponse';

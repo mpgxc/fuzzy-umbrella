@@ -9,7 +9,7 @@ import express from 'express';
 import helmet from 'helmet';
 import morgan from 'morgan';
 
-import { CelebrateExceptionHandler } from '@shared/excpetions';
+import { CelebrateExceptionHandler } from '@shared/exceptions';
 
 const app = express();
 

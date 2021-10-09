@@ -1,4 +1,4 @@
-import { BaseAppException } from '@shared/excpetions';
+import { BaseAppException } from '@shared/exceptions';
 
 class CustomerNotFoundError extends BaseAppException {
   constructor(value: string) {

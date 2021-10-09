@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { AppException } from '@shared/excpetions';
+import { AppException } from '@shared/exceptions';
 
 import { HttpStatusCodes } from './HttpStatusCodes';
 

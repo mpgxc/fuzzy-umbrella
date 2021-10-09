@@ -3,7 +3,7 @@ import { City } from '@domain/cities/City';
 import { ICityRepository } from '@domain/cities/ICityRepository';
 import { MemoryCityRepository } from '@infra/database/repositories';
 
-import { BaseAppException } from '@shared/excpetions';
+import { BaseAppException } from '@shared/exceptions';
 
 import { RegisterCity } from '../RegisterCity';
 

@@ -10,7 +10,7 @@ import {
 } from '@infra/database/repositories';
 import { v4 } from 'uuid';
 
-import { BaseAppException } from '@shared/excpetions';
+import { BaseAppException } from '@shared/exceptions';
 
 let registerCustomer: RegisterCustomer;
 let customerRepository: ICustomerRepository;

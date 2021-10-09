@@ -2,7 +2,7 @@ import { CustomerNotFoundError } from '@application/customers/errors';
 import { RemoveCustomer } from '@application/customers/RemoveCustomer';
 import { container } from 'tsyringe';
 
-import { AppException } from '@shared/excpetions';
+import { AppException } from '@shared/exceptions';
 import { IBaseController } from '@shared/http/BaseController';
 import { HttpRequest } from '@shared/http/HttpRequest';
 import { exception, HttpResponse, removed } from '@shared/http/HttpResponse';

@@ -5,7 +5,7 @@ import { ICityRepository } from '@domain/cities/ICityRepository';
 import { MemoryCityRepository } from '@infra/database/repositories';
 import { v4 } from 'uuid';
 
-import { BaseAppException } from '@shared/excpetions';
+import { BaseAppException } from '@shared/exceptions';
 
 import { ShowCity } from '../ShowCity';
 

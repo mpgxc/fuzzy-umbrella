@@ -5,7 +5,7 @@ import { ICustomerRepository } from '@domain/customers/ICustomerRepository';
 import { inject, injectable } from 'tsyringe';
 
 import { ContainerRegisterAlias } from '@shared/container/​​​​ContainerRegisterAlias';
-import { Either, Result } from '@shared/excpetions';
+import { Either, Result } from '@shared/exceptions';
 
 import { CityNotFoundError, InvalidGenreError } from './errors';
 

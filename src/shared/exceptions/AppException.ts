@@ -1,5 +1,6 @@
-import { BaseAppException } from '@shared/excpetions';
 import { HttpStatusCodes } from '@shared/http/HttpStatusCodes';
+
+import { BaseAppException } from '.';
 
 class AppException extends Error {
   readonly name: string;
