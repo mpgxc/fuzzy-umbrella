@@ -18,9 +18,9 @@ class CityRepository implements ICityRepository {
   async findByStateCity({
     city,
     state,
-  }: FindByStateAndCityRequest): Promise<City> {
+  }: FindByStateAndCityRequest): Promise<RenderCityResponse> {
     const citie = this.cities.find(c => c.name === city && c.country === state);
-    return citie ? CityMapper.toDomain(citie as RenderCityResponse) : null;
+    return citie ? CityMapper.toRender(citie as RenderCityResponse) : null;
   }
 
   private cities: CityPersistence[] = [];
@@ -44,9 +44,9 @@ class CityRepository implements ICityRepository {
     return city ? CityMapper.toDomain(city as RenderCityResponse) : null;
   }
 
-  async findByName(name: string): Promise<City[]> {
+  async findByName(name: string): Promise<RenderCityResponse[]> {
     const cities = this.cities.filter(city => city.name === name);
-    return cities ? cities.map(CityMapper.toDomain) : null;
+    return cities.map(CityMapper.toRender);
   }
 
   async findByCountry(country: string): Promise<RenderCityResponse[]> {

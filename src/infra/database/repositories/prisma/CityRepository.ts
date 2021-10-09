@@ -52,14 +52,14 @@ class CityRepository implements ICityRepository {
     return city ? CityMapper.toDomain(city) : null;
   }
 
-  async findByName(name: string): Promise<City[]> {
+  async findByName(name: string): Promise<RenderCityResponse[]> {
     const cities = await prisma.city.findMany({
       where: {
         name,
       },
     });
 
-    return cities ? cities.map(CityMapper.toDomain) : null;
+    return cities.map(CityMapper.toRender);
   }
 
   async findByCountry(country: string): Promise<RenderCityResponse[]> {
@@ -75,7 +75,7 @@ class CityRepository implements ICityRepository {
   async findByStateCity({
     city,
     state,
-  }: FindByStateAndCityRequest): Promise<City> {
+  }: FindByStateAndCityRequest): Promise<RenderCityResponse> {
     const cityFound = await prisma.city.findFirst({
       where: {
         name: { contains: city },
@@ -83,7 +83,7 @@ class CityRepository implements ICityRepository {
       },
     });
 
-    return cityFound ? CityMapper.toDomain(cityFound) : null;
+    return cityFound ? CityMapper.toRender(cityFound) : null;
   }
 
   async list(): Promise<RenderCityResponse[]> {

@@ -13,9 +13,12 @@ interface ICityRepository {
 
   findById(id: string): Promise<City>;
   findByIdRender(id: string): Promise<RenderCityResponse>;
-  findByName(name: string): Promise<City[]>;
+  findByName(name: string): Promise<RenderCityResponse[]>;
   findByCountry(country: string): Promise<RenderCityResponse[]>;
-  findByStateCity({ city, state }: FindByStateAndCityRequest): Promise<City>;
+  findByStateCity({
+    city,
+    state,
+  }: FindByStateAndCityRequest): Promise<RenderCityResponse>;
   list(): Promise<RenderCityResponse[]>;
 }
 
