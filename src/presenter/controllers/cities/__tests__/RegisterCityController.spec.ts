@@ -11,9 +11,7 @@ type ValidationPropsError = {
 
 describe('RegisterCityController - POST cities', () => {
   afterAll(async () => {
-    const deleteAllCities = prisma.city.deleteMany();
-
-    await prisma.$transaction([deleteAllCities]);
+    prisma.city.deleteMany();
 
     await prisma.$disconnect();
   });
