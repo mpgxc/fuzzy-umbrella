@@ -106,13 +106,15 @@ describe('UseCase - ListCity', () => {
 
     await Promise.all(citiesPromises);
 
-    const result = (await listCity.run({
+    const result = await listCity.run({
       state: 'Estado 5',
       city: 'Cidade 5',
-    })) as RenderCityResponse;
+    });
 
-    expect(result).toBeInstanceOf(Object);
-    expect(result.name).toBe('Cidade 5');
-    expect(result.country).toBe('Estado 5');
+    const [first] = result as RenderCityResponse[];
+
+    expect(first).toBeInstanceOf(Object);
+    expect(first.name).toBe('Cidade 5');
+    expect(first.country).toBe('Estado 5');
   });
 });

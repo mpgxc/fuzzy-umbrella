@@ -21,10 +21,12 @@ class ListCity {
     state,
   }: ListCityQuery): Promise<RenderCityResponse | RenderCityResponse[]> {
     if (state && city) {
-      return this.cityRepository.findByStateCity({
+      const cityFound = await this.cityRepository.findByStateCity({
         city,
         state,
       });
+
+      return [cityFound] || [];
     }
 
     if (state) {
