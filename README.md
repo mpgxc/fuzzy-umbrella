@@ -61,6 +61,12 @@ POSTGRES_PASSWORD=compassouol
 POSTGRES_DB=cuol
 POSTGRES_PORT=5432
 ```
+#### Adicione essa linha também, ela é responsável por conectar ao banco de dados
+
+```bash
+DATABASE_URL="postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}?schema=public"
+
+```
 
 ### Criando container do projeto (Desenvolvimento)
 
