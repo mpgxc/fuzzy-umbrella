@@ -7,7 +7,7 @@
 
   <img alt="License" src="https://img.shields.io/badge/license-MIT-%2304D361">
 
-  <a href="https://github.com/mpgxc/short.ly/stargazers">
+  <a href="https://github.com/mpgxc/fuzzy-umbrella/stargazers">
     <img alt="Stargazers" src="https://img.shields.io/github/stars/mpgxc/fuzzy-umbrella?style=social">
   </a>
 </p>
