@@ -1,3 +1,5 @@
+import { IBaseRepository } from '@domain/common/IBaseRepository';
+
 import { City } from './City';
 import { RenderCityResponse } from './CityMapper';
 
@@ -6,20 +8,13 @@ type FindByStateAndCityRequest = {
   state: string;
 };
 
-interface ICityRepository {
-  create(city: City): Promise<void>;
-  save(city: City): Promise<void>;
-  delete(id: string): Promise<void>;
-
-  findById(id: string): Promise<City>;
-  findByIdRender(id: string): Promise<RenderCityResponse>;
+interface ICityRepository extends IBaseRepository<City, RenderCityResponse> {
   findByName(name: string): Promise<RenderCityResponse[]>;
   findByCountry(country: string): Promise<RenderCityResponse[]>;
   findByStateCity({
     city,
     state,
   }: FindByStateAndCityRequest): Promise<RenderCityResponse>;
-  list(): Promise<RenderCityResponse[]>;
 }
 
 export { ICityRepository, FindByStateAndCityRequest };

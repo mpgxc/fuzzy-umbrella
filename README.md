@@ -7,7 +7,7 @@
 
   <img alt="License" src="https://img.shields.io/badge/license-MIT-%2304D361">
 
-  <a href="https://github.com/mpgxc/short.ly/stargazers">
+  <a href="https://github.com/mpgxc/fuzzy-umbrella/stargazers">
     <img alt="Stargazers" src="https://img.shields.io/github/stars/mpgxc/fuzzy-umbrella?style=social">
   </a>
 </p>
@@ -60,6 +60,12 @@ POSTGRES_USER=compassouol
 POSTGRES_PASSWORD=compassouol
 POSTGRES_DB=cuol
 POSTGRES_PORT=5432
+```
+#### Adicione essa linha também, ela é responsável por conectar ao banco de dados
+
+```bash
+DATABASE_URL="postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}?schema=public"
+
 ```
 
 ### Criando container do projeto (Desenvolvimento)
