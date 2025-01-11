@@ -1,10 +1,10 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { prisma } from '@infra/database/prisma';
 import { app } from '@infra/http/app';
-import faker from 'faker';
 import request from 'supertest';
 
-import { City } from '.prisma/client';
+import { faker } from '@faker-js/faker/.';
+import { City } from '@prisma/client';
 
 let city: City;
 
@@ -21,8 +21,8 @@ describe('ListCustomerController', () => {
   beforeEach(async () => {
     city = await prisma.city.create({
       data: {
-        country: faker.address.state(),
-        name: faker.address.city(),
+        country: faker.location.country(),
+        name: faker.location.city(),
       },
     });
   });
@@ -33,8 +33,8 @@ describe('ListCustomerController', () => {
     for (let i = 0; i < 5; i += 1) {
       customerRegistereds.push({
         birth_date: faker.date.past(),
-        full_name: faker.name.findName(),
-        genre: faker.random.arrayElement(['MALE', 'FEMALE']),
+        full_name: faker.person.fullName(),
+        genre: faker.helpers.arrayElement(['MALE', 'FEMALE']),
         city_id: city.id,
       });
     }
@@ -96,7 +96,7 @@ describe('ListCustomerController', () => {
 
     const [first] = response.body;
 
-    expect(first.age).toEqual(26);
+    expect(first.age).toEqual(new Date().getFullYear() - 1995);
     expect(first.full_name).toEqual('Mateus Pinto Garcia');
     expect(first.genre).toEqual('MALE');
 

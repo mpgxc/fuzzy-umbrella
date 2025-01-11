@@ -8,7 +8,7 @@ import { container } from 'tsyringe';
 import { AppException } from '@shared/exceptions';
 import { IBaseController } from '@shared/http/BaseController';
 import { HttpRequest } from '@shared/http/HttpRequest';
-import { exception, created, HttpResponse } from '@shared/http/HttpResponse';
+import { created, exception, HttpResponse } from '@shared/http/HttpResponse';
 import { HttpStatusCodes } from '@shared/http/HttpStatusCodes';
 
 class RegisterCityController implements IBaseController {

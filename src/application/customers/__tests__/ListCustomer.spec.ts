@@ -1,10 +1,10 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import 'reflect-metadata';
+
 import { ListCustomer } from '@application/customers/ListCustomer';
 import { Customer } from '@domain/customers/Customer';
 import { ICustomerRepository } from '@domain/customers/ICustomerRepository';
+import { faker } from '@faker-js/faker';
 import { MemoryCustomersRepository } from '@infra/database/repositories';
-import faker from 'faker';
 
 let listCustomer: ListCustomer;
 let customerRepository: ICustomerRepository;
@@ -19,19 +19,19 @@ describe('UseCase - ListCustomer', () => {
     const customer1 = Customer.build({
       birth_date: faker.date.past(),
       full_name: 'Mateus Garcia',
-      genre: faker.random.arrayElement(['MALE', 'FEMALE']),
+      genre: faker.helpers.arrayElement(['MALE', 'FEMALE']),
     });
 
     const customer2 = Customer.build({
       birth_date: faker.date.past(),
       full_name: 'Luzia',
-      genre: faker.random.arrayElement(['MALE', 'FEMALE']),
+      genre: faker.helpers.arrayElement(['MALE', 'FEMALE']),
     });
 
     const customer3 = Customer.build({
       birth_date: faker.date.past(),
       full_name: 'Mateus Pinto',
-      genre: faker.random.arrayElement(['MALE', 'FEMALE']),
+      genre: faker.helpers.arrayElement(['MALE', 'FEMALE']),
     });
 
     await customerRepository.create(customer1, '');
@@ -47,20 +47,20 @@ describe('UseCase - ListCustomer', () => {
   it('should be to list all registered customers!', async () => {
     const customer1 = Customer.build({
       birth_date: faker.date.past(),
-      full_name: faker.name.findName(),
-      genre: faker.random.arrayElement(['MALE', 'FEMALE']),
+      full_name: faker.person.fullName(),
+      genre: faker.helpers.arrayElement(['MALE', 'FEMALE']),
     });
 
     const customer2 = Customer.build({
       birth_date: faker.date.past(),
-      full_name: faker.name.findName(),
-      genre: faker.random.arrayElement(['MALE', 'FEMALE']),
+      full_name: faker.person.fullName(),
+      genre: faker.helpers.arrayElement(['MALE', 'FEMALE']),
     });
 
     const customer3 = Customer.build({
       birth_date: faker.date.past(),
-      full_name: faker.name.findName(),
-      genre: faker.random.arrayElement(['MALE', 'FEMALE']),
+      full_name: faker.person.fullName(),
+      genre: faker.helpers.arrayElement(['MALE', 'FEMALE']),
     });
 
     await customerRepository.create(customer1, '');

@@ -1,5 +1,6 @@
 import { prisma } from '@infra/database/prisma';
 import { app } from '@infra/http/app';
+import 'reflect-metadata';
 import request from 'supertest';
 import { v4 } from 'uuid';
 

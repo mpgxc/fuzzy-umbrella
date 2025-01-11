@@ -26,7 +26,7 @@ class ListCity {
         state,
       });
 
-      return [cityFound] || [];
+      return cityFound ? [cityFound] : [];
     }
 
     if (state) {

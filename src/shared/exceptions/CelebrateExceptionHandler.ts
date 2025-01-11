@@ -1,6 +1,6 @@
 import { CelebrateMapper } from '@infra/http/adapters/CelebrateAdapter/CelebrateMapper';
 import { CelebrateError } from 'celebrate';
-import { Response, Request, NextFunction } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { ValidationError } from 'joi';
 
 import { HttpStatusCodes } from '@shared/http/HttpStatusCodes';
@@ -11,7 +11,7 @@ class CelebrateExceptionHandler {
     request: Request,
     response: Response,
     next: NextFunction,
-  ): Response | void {
+  ) {
     if (err instanceof CelebrateError) {
       const CelebratePropsErrors: Record<string, ValidationError> = {};
       let contextErrorKey: string;
@@ -25,12 +25,12 @@ class CelebrateExceptionHandler {
         CelebratePropsErrors[contextErrorKey].details,
       );
 
-      return response
+      response
         .status(HttpStatusCodes.STATUS_CODE_UUNPROCESSABLE_ENTITY)
         .json(responseMessages);
     }
 
-    return next();
+    next();
   }
 }
 

@@ -1,9 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import 'reflect-metadata';
 import { Customer } from '@domain/customers/Customer';
 import { ICustomerRepository } from '@domain/customers/ICustomerRepository';
+import { faker } from '@faker-js/faker';
 import { MemoryCustomersRepository } from '@infra/database/repositories';
-import faker from 'faker';
+import 'reflect-metadata';
 import { v4 } from 'uuid';
 
 import { BaseAppException } from '@shared/exceptions';
@@ -23,7 +23,7 @@ describe('UseCase - UpdateCustomer', () => {
     const customer = Customer.build({
       birth_date: faker.date.past(),
       full_name: 'Mateus Garcia',
-      genre: faker.random.arrayElement(['MALE', 'FEMALE']),
+      genre: faker.helpers.arrayElement(['MALE', 'FEMALE']),
     });
 
     await customerRepository.create(customer, '');
@@ -55,7 +55,7 @@ describe('UseCase - UpdateCustomer', () => {
     const customer = Customer.build({
       birth_date: faker.date.past(),
       full_name: 'Mateus Garcia',
-      genre: faker.random.arrayElement(['MALE', 'FEMALE']),
+      genre: faker.helpers.arrayElement(['MALE', 'FEMALE']),
     });
 
     await customerRepository.create(customer, '');

@@ -1,6 +1,7 @@
 import 'dotenv/config';
-import 'reflect-metadata';
 import 'express-async-errors';
+import 'reflect-metadata';
+
 import '@shared/container';
 
 import { RouteNotFound } from '@presenter/middlewares/RouteNotFound';

@@ -1,11 +1,11 @@
 /* eslint-disable import/no-extraneous-dependencies */
+import { faker } from '@faker-js/faker';
 import { prisma } from '@infra/database/prisma';
 import { app } from '@infra/http/app';
-import faker from 'faker';
+import { City } from '@prisma/client';
+import 'reflect-metadata';
 import request from 'supertest';
 import { v4 } from 'uuid';
-
-import { City } from '.prisma/client';
 
 let city: City;
 
@@ -22,8 +22,8 @@ describe('RemoveCustomerController', () => {
   beforeEach(async () => {
     city = await prisma.city.create({
       data: {
-        country: faker.address.state(),
-        name: faker.address.city(),
+        country: faker.location.country(),
+        name: faker.location.city(),
       },
     });
   });
@@ -32,8 +32,8 @@ describe('RemoveCustomerController', () => {
     const customer = await prisma.customer.create({
       data: {
         birth_date: faker.date.past(),
-        full_name: faker.name.findName(),
-        genre: faker.random.arrayElement(['MALE', 'FEMALE']),
+        full_name: faker.person.fullName(),
+        genre: faker.helpers.arrayElement(['MALE', 'FEMALE']),
         city_id: city.id,
       },
     });

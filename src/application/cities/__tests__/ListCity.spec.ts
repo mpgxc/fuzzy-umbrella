@@ -1,9 +1,8 @@
-import 'reflect-metadata';
 import { City } from '@domain/cities/City';
 import { RenderCityResponse } from '@domain/cities/CityMapper';
 import { ICityRepository } from '@domain/cities/ICityRepository';
 import { MemoryCityRepository } from '@infra/database/repositories';
-
+import 'reflect-metadata';
 import { ListCity } from '../ListCity';
 
 let cityRepository: ICityRepository;
